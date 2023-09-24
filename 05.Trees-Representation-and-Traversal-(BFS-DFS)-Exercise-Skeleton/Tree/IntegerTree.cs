@@ -43,7 +43,29 @@
 
         public IEnumerable<Tree<int>> GetSubtreesWithGivenSum(int sum)
         {
-            throw new NotImplementedException();
+            List<Tree<int>> resultPaths = new List<Tree<int>>();
+
+            this.FindAllTreePaths(this, sum, resultPaths);
+            return resultPaths;
+        }
+
+        private int FindAllTreePaths(Tree<int> node, int sum, List<Tree<int>> resultPaths)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+            int subtreeSum = node.Key;
+
+            foreach (var child in node.Children)
+            {
+                subtreeSum += FindAllTreePaths(node, sum, resultPaths);
+            }
+            if(subtreeSum == sum)
+            {
+                resultPaths.Add(new IntegerTree(node.Key,node.Children.ToArray()));
+            }
+            return subtreeSum;
         }
     }
 }
