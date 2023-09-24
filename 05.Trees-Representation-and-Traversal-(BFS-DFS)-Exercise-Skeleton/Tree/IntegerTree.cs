@@ -59,11 +59,11 @@
 
             foreach (var child in node.Children)
             {
-                subtreeSum += FindAllTreePaths(node, sum, resultPaths);
+                subtreeSum += FindAllTreePaths(child, sum, resultPaths);
             }
             if(subtreeSum == sum)
             {
-                resultPaths.Add(new IntegerTree(node.Key,node.Children.ToArray()));
+                resultPaths.Add(new IntegerTree(node.Key, node.Children.ToArray()));
             }
             return subtreeSum;
         }
